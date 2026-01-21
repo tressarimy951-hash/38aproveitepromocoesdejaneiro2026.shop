@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preparando Oferta...</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #12001f, #2a0045);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    width: 90%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 30px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 40px rgba(199,125,255,0.5);
+    animation: fadeUp 0.9s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 900;
+    color: #c77dff;
+    text-align: center;
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 15px;
+    text-align: center;
+    color: #f2e6ff;
+    opacity: 0.85;
+}
+
+.status {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #c77dff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* PROGRESS BAR */
+.progress-box {
+    margin-top: 16px;
+    width: 100%;
+    height: 18px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #c77dff, #9d4edd);
+    transition: width 0.3s ease;
+}
+
+.percent {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #c77dff;
+}
+
+.link-btn {
+    display: block;
+    margin-top: 32px;
+    text-align: center;
+    background: linear-gradient(135deg, #c77dff, #9d4edd);
+    color: #12001f;
+    padding: 15px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.link-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(199,125,255,0.9);
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="title">MEGA FEIRÃO</div>
+    <div class="subtitle">Preparando uma experiência exclusiva para você</div>
+
+    <div id="status" class="status">🔍 Analisando disponibilidade...</div>
+
+    <div class="progress-box">
+        <div id="progress" class="progress"></div>
+    </div>
+
+    <div id="percent" class="percent">0%</div>
+
+    <a href="https://iqiveto899-ship-it.github.io/megapromocaodejaneiro2026/" class="link-btn">
+        Continuar
+    </a>
+</div>
+
+<script>
+let percent = 0;
+const progress = document.getElementById("progress");
+const percentText = document.getElementById("percent");
+const statusText = document.getElementById("status");
+
+const statuses = [
+    "🔍 Analisando disponibilidade...",
+    "⚙️ Validando acesso...",
+    "🔓 Liberando ofertas...",
+    "✅ Pronto!"
+];
+
+const loading = setInterval(() => {
+    percent++;
+    progress.style.width = percent + "%";
+    percentText.innerText = percent + "%";
+
+    if (percent === 30) statusText.innerText = statuses[1];
+    if (percent === 60) statusText.innerText = statuses[2];
+    if (percent === 100) {
+        statusText.innerText = statuses[3];
+        clearInterval(loading);
+    }
+}, 40);
+</script>
+
+</body>
+</html>
